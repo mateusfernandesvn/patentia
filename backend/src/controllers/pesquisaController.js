@@ -18,7 +18,7 @@ const executarPesquisa = async (req, res) => {
     }
 
     // Se não existe, chama o script Python passando o input
-    exec(`python ./backend/src/utils/automation.py "${input}"`, (err, stdout, stderr) => {
+    exec(`python ./src/utils/automation.py "${input}"`, (err, stdout, stderr) => {
       if (err) {
         console.error('Erro ao executar o script:', err);
         return res.status(500).json({ error: 'Erro ao executar o script Python' });

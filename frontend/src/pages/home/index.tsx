@@ -18,7 +18,7 @@ export function Home() {
     console.log(search);
 
     try {
-      const response = await axios.post('http://localhost:3001/pesquisar',{
+      const response = await axios.post('http://localhost:3000/pesquisar',{
         input: search,
     });
       setData(response.data);
