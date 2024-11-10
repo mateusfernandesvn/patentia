@@ -1,4 +1,3 @@
-// modelo busca_inpi.js
 'use strict';
 const { Model } = require('sequelize');
 
@@ -11,8 +10,30 @@ module.exports = (sequelize, DataTypes) => {
         as: 'descricaoWipo'
       });
     }
+
+    // Adicione o método buscarPorTermo diretamente na classe
+    static async buscarPorTermo(termo) {
+      const resultado = await busca_inpi.findAll({
+        where: { pesquisa_realizada: termo },
+        include: [
+          {
+            model: sequelize.models.wipo_dados,
+            as: 'descricaoWipo',
+            attributes: ['codigo', 'descricao']
+          }
+        ]
+      });
+    
+      // Se não houver resultados, retorna false
+      if (resultado.length === 0) {
+        return false;
+      }
+    
+      return resultado;
+    }
   }
   
+  // Inicialização do modelo
   busca_inpi.init({
     pedido: DataTypes.STRING,
     deposito: DataTypes.STRING,
@@ -23,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'busca_inpi',
-    tableName: 'busca_inpi' // Define o nome exato da tabela no banco
+    tableName: 'busca_inpi' 
   });
 
   return busca_inpi;
