@@ -2,6 +2,7 @@ import { useState, FormEvent } from "react";
 import { Container } from "../../components/container";
 import BasicTable from "../../components/table";
 import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader"; 
 
 export function Home() {
   const [search, setSearch] = useState("");
@@ -47,10 +48,9 @@ export function Home() {
       </form>
 
       <div className="mt-10">
-
         {hasSearched &&
           (loading ? (
-            <p className="text-center text-blue-600">Carregando...</p>
+            <p className="text-center text-blue-600"><ClipLoader /></p>
           ) : error ? (
             <p className="text-center text-red-600">{error}</p>
           ) : data.length > 0 ? (
