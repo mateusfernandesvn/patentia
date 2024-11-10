@@ -16,6 +16,6 @@ createDatabaseIfNotExists();
 app.use('/pesquisar', pesquisaRoutes);
 
 // Inicia o servidor
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('Servidor Backend em execução');
 });

@@ -18,10 +18,12 @@ export function Home() {
     console.log(search);
 
     try {
-      const response = await axios.get();
+      const response = await axios.get(`http://localhost:3001/pesquisar/${search}`);
       setData(response.data);
     } catch (error) {
-      setError("Erro ao buscar dados. Tente novamente mais tarde.", error);
+      setError("Erro ao buscar dados. Tente novamente mais tarde.");
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }
