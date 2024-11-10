@@ -1,18 +1,18 @@
+// modelo busca_inpi.js
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class busca_inpi extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      busca_inpi.belongsTo(models.wipo_dados, {
+        foreignKey: 'ipc',
+        targetKey: 'codigo',
+        as: 'descricaoWipo'
+      });
     }
   }
+  
   busca_inpi.init({
     pedido: DataTypes.STRING,
     deposito: DataTypes.STRING,
@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'busca_inpi',
+    tableName: 'busca_inpi' // Define o nome exato da tabela no banco
   });
+
   return busca_inpi;
 };
