@@ -2,6 +2,7 @@ const { exec } = require('child_process');
 
 // Função para executar a pesquisa e retornar os dados
 const executarPesquisa = (req, res) => {
+  // Acessa o valor de 'input' do corpo da requisição
   const { input } = req.body;
 
   // Valida se o campo 'input' foi informado
@@ -10,7 +11,7 @@ const executarPesquisa = (req, res) => {
   }
 
   // Chama o script Python passando o input
-  exec(`python ./src/utils/automation.py "${input}"`, async (err, stdout, stderr) => {
+  exec(`python ./backend/src/utils/automation.py "${input}"`, async (err, stdout, stderr) => {
     if (err) {
       console.error('Erro ao executar o script:', err);
       return res.status(500).json({ error: 'Erro ao executar o script Python' });

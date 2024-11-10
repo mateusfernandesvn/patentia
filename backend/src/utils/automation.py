@@ -59,8 +59,8 @@ while True:
             
             # Insere os dados na tabela
             insert_query = """
-            INSERT INTO busca_inpi (pedido, deposito, titulo, ipc, link, pesquisa_realizada)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO busca_inpi (pedido, deposito, titulo, ipc, link, pesquisa_realizada, createdAt, updatedAt)
+            VALUES (%s, %s, %s, %s, %s, %s, NOW(), NOW())
             """
             cursor.execute(insert_query, (pedido, deposito, titulo, ipc, link, search_value))
             db.commit()

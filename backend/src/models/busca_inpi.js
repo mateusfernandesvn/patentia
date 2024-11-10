@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   busca_inpi.init({
     pedido: DataTypes.STRING,
     deposito: DataTypes.STRING,
-    titulo: DataTypes.STRING,
+    titulo: DataTypes.TEXT,
     ipc: DataTypes.STRING,
     link: DataTypes.TEXT,
     pesquisa_realizada: DataTypes.STRING
