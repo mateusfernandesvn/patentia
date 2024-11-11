@@ -23,7 +23,7 @@ export function Home() {
     });
       setData(response.data);
     } catch (error) {
-      setError("Erro ao buscar dados. Tente novamente mais tarde.");
+      setError("Erro ao buscar dados. Tente novamente.");
       console.log(error);
       
     } finally {
