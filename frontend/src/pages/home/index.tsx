@@ -5,8 +5,8 @@ import BasicTable from "../../components/table";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export function Home() {
-  const [search, setSearch] = useState<string>(""); 
-  const [data, setData] = useState<any[]>([]); 
+  const [search, setSearch] = useState<string>("");
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
@@ -14,33 +14,35 @@ export function Home() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setLoading(true);
+    setError(null); 
     setHasSearched(true);
-    console.log(search); 
-  
+
     try {
-      
       const response = await axios.post("http://localhost:3000/pesquisar", {
         input: search,
       });
-      console.log(response.data); 
-  
+      
+      console.log("Resposta do servidor:", response.data);
+
+      
       if (response.data.resultado && Array.isArray(response.data.resultado)) {
         const formattedData = response.data.resultado.map((item: any) => ({
-          pedido: item.pedido,   
-          deposito: item.deposito,   
-          titulo: item.titulo, 
-          link: item.link, 
-          ipc: item.ipc, 
-          pesquisa: item.pesquisa_realizada, 
-          descricaoWipo: item.descricaoWipo?.descricao || "Descrição não disponível", 
+          pedido: item.pedido,
+          deposito: item.deposito,
+          titulo: item.titulo,
+          link: item.link,
+          ipc: item.ipc,
+          pesquisa: item.pesquisa_realizada,
+          descricaoWipo: item.descricaoWipo?.descricao || "Descrição não disponível",
         }));
         setData(formattedData);
       } else {
-        throw new Error("A resposta não contém um array válido na chave 'resultado'.");
+        setData([]); 
+        console.warn("Nenhum dado encontrado na chave 'resultado'.");
       }
     } catch (error) {
       setError("Erro ao buscar dados. Tente novamente.");
-      console.error(error);
+      console.error("Erro ao buscar dados:", error);
     } finally {
       setLoading(false);
     }
@@ -49,7 +51,7 @@ export function Home() {
   return (
     <Container>
       <div className="my-8">
-        <h1 className="text-3xl font-bold text-center m-4 uppercase">
+        <h1 className="text-2xl font-bold text-center m-4 uppercase">
           Pesquise por uma patente
         </h1>
         <form onSubmit={handleSubmit}>
@@ -59,10 +61,10 @@ export function Home() {
               placeholder="Inserir o nome da patente"
               className="border-2 border-gray-300 rounded-md p-2 w-1/2 h-12"
               value={search}
-              onChange={(e) => setSearch(e.target.value)} 
+              onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="bg-blue-700 border-none h-12 text-white rounded-lg p-3 hover:bg-blue-800 transition-all duration-300">
-              Pesquisar
+            <button className="bg-blue-600 border-none h-12 text-white rounded-lg p-3 hover:bg-blue-500 transition-all duration-300">
+              Buscar
             </button>
           </div>
         </form>
@@ -73,12 +75,14 @@ export function Home() {
           <>
             {loading ? (
               <p className="text-center text-blue-600">
-                <ClipLoader />
+                <ClipLoader size={50} />
               </p>
             ) : error ? (
               <p className="text-center text-red-600">{error}</p>
-            ) : data.length === 0 ? (
-              <p className="text-center text-gray-600">Nenhuma patente encontrada.</p>
+            ) : data.length === 0 && !loading ? (
+              <p className="text-center text-gray-600">
+                Nenhuma patente encontrada.
+              </p>
             ) : (
               <BasicTable rows={data} />
             )}
