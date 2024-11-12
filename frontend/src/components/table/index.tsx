@@ -44,7 +44,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
             <th className="border px-4 py-2 bg-gray-800 text-white">Pedido</th>
             <th className="border px-4 py-2 bg-gray-800 text-white">Depósito</th>
             <th className="border px-4 py-2 bg-gray-800 text-white">Título</th>
-            <th className="border px-4 py-2 bg-gray-800 text-white">Código</th>
+            <th className="border px-4 py-2 bg-gray-800 text-white">IPC</th>
             <th className="border px-4 py-2 bg-gray-800 text-white">Descrição</th>
           </tr>
         </thead>

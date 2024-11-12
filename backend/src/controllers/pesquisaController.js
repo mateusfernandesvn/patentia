@@ -10,7 +10,7 @@ const executarPesquisa = async (req, res) => {
 
   try {
     // Verifica se o termo já existe no banco de dados
-    const pesquisaExistente = await busca_inpi.buscarPorTermo(input);
+    let pesquisaExistente = await busca_inpi.buscarPorTermo(input);
 
     // Se a pesquisa já existe, retorna o resultado do banco de dados
     if (pesquisaExistente) {
@@ -18,7 +18,7 @@ const executarPesquisa = async (req, res) => {
     }
 
     // Se não existe, chama o script Python passando o input
-    exec(`python  ./backend/src/utils/automation.py "${input}"`, (err, stdout, stderr) => {
+    exec(`python ./backend/src/utils/automation.py "${input}"`, async (err, stdout, stderr) => {
       if (err) {
         console.error('Erro ao executar o script:', err);
         return res.status(500).json({ error: 'Erro ao executar o script Python' });
@@ -29,7 +29,10 @@ const executarPesquisa = async (req, res) => {
         return res.status(500).json({ error: 'Erro no script Python' });
       }
 
-      return res.json({ message: 'Pesquisa realizada e salva com sucesso!' });
+      // Chama buscarPorTermo novamente para pegar o resultado atualizado do banco
+      pesquisaExistente = await busca_inpi.buscarPorTermo(input);
+
+      return res.json({ resultado: pesquisaExistente });
     });
   } catch (error) {
     console.error('Erro ao acessar o banco de dados:', error);
