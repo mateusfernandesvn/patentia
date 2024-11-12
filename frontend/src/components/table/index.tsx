@@ -1,65 +1,99 @@
-import { useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import TablePagination from '@mui/material/TablePagination';
+import React, { useState } from "react";
+import TablePagination from "@mui/material/TablePagination";
 
-// Tipagem para os dados da tabela
 interface DataRow {
+  pedido: string;
+  deposito: string;
+  titulo: string;
+  ipc: string;
+  link: string;
+  pesquisa: string;
   codigo: string;
-  descricao: string;
+  descricaoWipo: string; 
 }
 
 interface BasicTableProps {
-  rows: DataRow[]; // A lista de dados será passada como uma prop
+  rows: DataRow[];
 }
 
-export default function BasicTable({ rows }: BasicTableProps) {
+const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Defina o valor inicial como preferir
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+  const paginatedRows = rows.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Código</TableCell>
-            <TableCell>Descrição</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-            <TableRow key={row.codigo}>
-              <TableCell component="th" scope="row">
-                {row.codigo}
-              </TableCell>
-              <TableCell>{row.descricao}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className="overflow-x-auto">
+      <table className="min-w-full table-auto border-collapse">
+        <thead>
+          <tr>
+            <th className="border px-4 py-2 bg-gray-800 text-white">Pedido</th>
+            <th className="border px-4 py-2 bg-gray-800 text-white">Depósito</th>
+            <th className="border px-4 py-2 bg-gray-800 text-white">Título</th>
+            <th className="border px-4 py-2 bg-gray-800 text-white">Código</th>
+            <th className="border px-4 py-2 bg-gray-800 text-white">Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedRows.length > 0 ? (
+            paginatedRows.map((row) => (
+              <tr key={row.codigo}>
+                <td className="border px-4 py-2 text-justify">
+                  <a
+                    href={row.link}
+                    target="_blank"
+                    className="underline underline-offset-2 hover:text-gray-700 transition-all duration-300"
+                  >
+                    {row.pedido}
+                  </a>
+                </td>
+                <td className="border px-4 py-2 text-justify">{row.deposito}</td>
+                <td className="border px-4 py-2 text-justify">{row.titulo}</td>
+                <td className="border px-4 py-2 text-justify">{row.ipc}</td>
+                <td className="border px-4 py-2 text-justify">
+                  {row.descricaoWipo} 
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={7} className="border px-4 py-2 text-center">
+                Nenhum dado encontrado
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
       <TablePagination
-        rowsPerPageOptions={[5, 10, 15]}
         component="div"
         count={rows.length}
-        rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPageOptions={[5, 10, 25]}
+        labelRowsPerPage="Linhas por página:"
+        labelDisplayedRows={({ from, to, count }) =>
+          `${from}-${to} de ${count}`
+        }
       />
-    </TableContainer>
+    </div>
   );
-}
+};
+
+export default BasicTable;
