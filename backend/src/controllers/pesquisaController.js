@@ -1,6 +1,8 @@
-const { exec } = require('child_process');
+// Correção no import necessário para exportarParaExcel
+const { execFile } = require('child_process');
+const { busca_inpi, sequelize } = require('../models'); // Adicione sequelize
+const { Op } = require('sequelize');
 const ExcelJS = require('exceljs');
-const { busca_inpi } = require('../models');
 
 // Função para executar a pesquisa
 const executarPesquisa = async (req, res) => {
@@ -19,8 +21,8 @@ const executarPesquisa = async (req, res) => {
       return res.json({ resultado: pesquisaExistente });
     }
 
-    // Se não existe, chama o script Python passando o input
-    exec(`python ./backend/src/utils/automation.py "${input}"`, async (err, stdout, stderr) => {
+    // Se não existe, chama o script Python passando o input de forma segura
+    execFile('python', ['./backend/src/utils/automation.py', input], async (err, stdout, stderr) => {
       if (err) {
         console.error('Erro ao executar o script:', err);
         return res.status(500).json({ error: 'Erro ao executar o script Python' });
@@ -34,6 +36,10 @@ const executarPesquisa = async (req, res) => {
       // Chama buscarPorTermo novamente para pegar o resultado atualizado do banco
       pesquisaExistente = await busca_inpi.buscarPorTermo(input);
 
+      if (!pesquisaExistente) {
+        return res.status(404).json({ error: 'Nenhum resultado encontrado' });
+      }
+
       return res.json({ resultado: pesquisaExistente });
     });
   } catch (error) {
@@ -44,9 +50,10 @@ const executarPesquisa = async (req, res) => {
 
 // Função para exportar para Excel
 async function exportarParaExcel(req, res) {
-  const pesquisa_realizada = req.query.filter || '';
+  const { pesquisa_realizada } = req.query; 
 
   try {
+
     const results = await busca_inpi.findAll({
       where: { pesquisa_realizada: { [Op.like]: `%${pesquisa_realizada}%` } },
       include: [
@@ -57,6 +64,10 @@ async function exportarParaExcel(req, res) {
         },
       ],
     });
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Nenhum resultado encontrado para o termo especificado." });
+    }
 
     // Criação do arquivo Excel em memória
     const workbook = new ExcelJS.Workbook();
