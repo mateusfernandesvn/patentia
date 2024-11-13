@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, FormEvent } from "react";
+
 import axios from "axios";
+
 import { Container } from "../../components/container";
 import BasicTable from "../../components/table";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -14,17 +17,16 @@ export function Home() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setLoading(true);
-    setError(null); 
+    setError(null);
     setHasSearched(true);
 
     try {
       const response = await axios.post("http://localhost:3000/pesquisar", {
         input: search,
       });
-      
+
       console.log("Resposta do servidor:", response.data);
 
-      
       if (response.data.resultado && Array.isArray(response.data.resultado)) {
         const formattedData = response.data.resultado.map((item: any) => ({
           pedido: item.pedido,
@@ -32,12 +34,13 @@ export function Home() {
           titulo: item.titulo,
           link: item.link,
           ipc: item.ipc,
-          pesquisa: item.pesquisa_realizada,
-          descricaoWipo: item.descricaoWipo?.descricao || "Descrição não disponível",
+          pesquisa: item.pesquisa_realizada,  
+          descricaoWipo:
+            item.descricaoWipo?.descricao || "Descrição não disponível",
         }));
         setData(formattedData);
       } else {
-        setData([]); 
+        setData([]);
         console.warn("Nenhum dado encontrado na chave 'resultado'.");
       }
     } catch (error) {
@@ -45,6 +48,27 @@ export function Home() {
       console.error("Erro ao buscar dados:", error);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleExcel(pesquisaRealizada: string) {
+    try {
+      const response = await axios.get("http://localhost:3000/download", {
+        responseType: "blob", 
+        params: { pesquisa_realizada: pesquisaRealizada }, 
+      });
+
+      // Criar um URL temporário para o arquivo
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${pesquisaRealizada}_dados_patentes.xlsx`); 
+      document.body.appendChild(link);
+      link.click();
+
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Erro ao gerar o arquivo Excel:", error);
     }
   }
 
@@ -84,7 +108,20 @@ export function Home() {
                 Nenhuma patente encontrada.
               </p>
             ) : (
-              <BasicTable rows={data} />
+              <>
+                <div className="overflow-x-auto bg-slate-100 p-6 rounded-lg">
+                  <div className="flex justify-around items-center my-4">
+                    <h1 className="text-3xl font-semibold">Visualizar Dados</h1>
+                    <button
+                      className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => handleExcel(data[0].pesquisa)}
+                    >
+                      Gerar Excel
+                    </button>
+                  </div>
+                  <BasicTable rows={data} />
+                </div>
+              </>
             )}
           </>
         )}
