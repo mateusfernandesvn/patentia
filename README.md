@@ -30,8 +30,8 @@ Este projeto tem como objetivo automatizar o processo de consulta de patentes no
 
 ## 📋 Pré-Requisitos
 
-- Node.js (para o frontend)
-- Python (para o backend)
+- Node.js
+- Python
 - Banco de dados (MySQL)
 
 ## 🚀  Rodando localmente
