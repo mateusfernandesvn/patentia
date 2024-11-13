@@ -2,6 +2,9 @@
 
 Este projeto tem como objetivo automatizar o processo de consulta de patentes no INPI (Instituto Nacional da Propriedade Industrial) e exibir os resultados por meio de uma interface web. O sistema utiliza Python para realizar a raspagem dos dados, armazenando-os em um banco de dados, e o frontend é desenvolvido em React para exibição dos dados. O projeto é composto por três partes principais:
 
+## 📸 Imagem do projeto
+![Imagem do projeto](https://github.com/user-attachments/assets/c40bc4e5-b77d-456f-ba48-18e1cded22ba)
+
 ## 💻	 Funcionalidades
 - **Raspagem de Dados de Patentes**: Realiza a raspagem de dados de patentes diretamente do site do **INPI** (Instituto Nacional de Propriedade Industrial).
 - **Armazenamento em Banco de Dados**: Armazena as informações extraídas das patentes em um banco de dados (MySQL).
@@ -18,47 +21,18 @@ Este projeto tem como objetivo automatizar o processo de consulta de patentes no
     - **MySQL**: Para armazenar as informações extraídas das patentes.
   - **Node.js**: Usado para expor a API que comunica o backend com o frontend, permitindo que os dados sejam acessados pela interface web.
 
-<<<<<<< HEAD
-- Realiza a raspagem de dados de patentes do site do INPI.
-- Armazena as informações extraídas em um banco de dados.
-- Exibe os dados na interface web, permitindo ao usuário consultar os registros de patentes.
-- Validação e estruturação de dados no backend usando Express Validator.
-
-## Tecnologias Utilizadas
-
-- **Backend (RPA)**:
-
-  - Python
-  - Bibliotecas para raspagem de dados (BeautifulSoup, Requests)
-  - Banco de dados (SQLite ou PostgreSQL)
+    
 - **Frontend**:
+  - **React.js**: Interface web interativa.
+  - **Tailwind CSS**: Estilização responsiva e moderna.
+  - **Axios**: equisições HTTP para o backend.
+  - **Material-UI (MUI)**: Componentes de UI prontos para facilitar o desenvolvimento.
 
-  - React.js
-  - React Hook Form (para formulários)
-  - Tailwind CSS (para estilos)
-  - Zod (para validações)
-- **Validações**:
-
-  - Express Validator (para o backend)
-
-## Como Rodar o Projeto
-
-### Requisitos
-=======
-- **Frontend**:
-  - **React.js**: Para a construção da interface web interativa.
-  - **Tailwind CSS**: Para estilização da interface, proporcionando um design responsivo e moderno.
-  - **Axios**: Para realizar requisições HTTP ao backend, buscando e exibindo os dados na interface.
-  - **react-spinners**: Para mostrar animações de carregamento (spinners) enquanto os dados estão sendo carregados ou processados.
-  - **Material-UI (MUI)**: Para componentes prontos, acelerando o desenvolvimento da interface e oferecendo uma experiência de usuário consistente e moderna.
- 
 ## 📋 Pré-Requisitos
->>>>>>> 6962c2e7506fce75a276ba46c3508e47f65c6e20
 
 - Node.js (para o frontend)
 - Python (para o backend)
 - Banco de dados (MySQL)
-
 
 ## 🚀  Rodando localmente
 
@@ -69,6 +43,7 @@ Primeiro, clone o repositório do projeto para sua máquina local:
 ```bash
 git clone git@github.com:iJeferson/tcc-rpa-update.git
 ```
+
 ### 2. Instalar as Dependências
 
 O projeto está dividido em duas partes: o backend e o frontend. Siga as etapas abaixo para instalar as dependências e rodar o projeto.
@@ -123,8 +98,21 @@ Após iniciar o frontend e backend, você pode testar as funcionalidades do sist
 
 - Download de Excel: Teste o download dos dados no formato de planilha.
 
+## 🚀 Exemplo de Uso
 
-   
+1. Após rodar o projeto, acesse a interface web no endereço [http://localhost:5173](http://localhost:5173).
+2. Insira os termos de pesquisa para consultar as patentes.
+3. O sistema irá exibir os dados extraídos do INPI, permitindo visualizar e interagir com as informações.
+4. Para fazer o download das patentes em formato Excel, clique no botão "Baixar Excel".
+
+## 📜 Histórico de Alterações
+
+### [1.0.0] - 2024-11-13
+- Implementação da raspagem de dados de patentes.
+- Conexão com banco de dados MySQL.
+- Exibição de patentes na interface web.
+- Funcionalidade de download de Excel.
+
 ## 🤝 Autores
 
 - [Jeferson Oliveira](https://github.com/iJeferson)
@@ -132,11 +120,8 @@ Após iniciar o frontend e backend, você pode testar as funcionalidades do sist
 - [Ielber Pellegrini](https://github.com/ielberPellegrini)
 - [Mateus Fernandes](https://github.com/mateusfernandesvn)
 
+## 📝 Licença
 
-<<<<<<< HEAD
-   ```bash
-   git clone https://github.com/seu-usuario/rpa-inpi.git
-   cd rpa-inpi
-   ```
-=======
->>>>>>> 6962c2e7506fce75a276ba46c3508e47f65c6e20
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+
