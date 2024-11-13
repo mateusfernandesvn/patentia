@@ -3,7 +3,7 @@
 Este projeto tem como objetivo automatizar o processo de consulta de patentes no INPI (Instituto Nacional da Propriedade Industrial) e exibir os resultados por meio de uma interface web. O sistema utiliza Python para realizar a raspagem dos dados, armazenando-os em um banco de dados, e o frontend é desenvolvido em React para exibição dos dados. O projeto é composto por três partes principais:
 
 ## 📸 Imagem do projeto
-![Imagem do projeto](https://github.com/user-attachments/assets/c40bc4e5-b77d-456f-ba48-18e1cded22ba)
+![screencapture-localhost-5173-2024-11-13-15_26_24](https://github.com/user-attachments/assets/c3456dce-651d-4405-bc9d-f6e8fc97e9d4)
 
 ## 💻	 Funcionalidades
 - **Raspagem de Dados de Patentes**: Realiza a raspagem de dados de patentes diretamente do site do **INPI** (Instituto Nacional de Propriedade Industrial).
