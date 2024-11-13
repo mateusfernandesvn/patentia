@@ -86,8 +86,6 @@ Agora você pode acessar a aplicação localmente no seu navegador:
 
 - Frontend (React): Acesse http://localhost:5173 para visualizar a interface web.
 
-- Backend (API Node.js): A API estará disponível em http://localhost:3000 ou na porta configurada no seu arquivo de configuração.
-
 ### 6. Testar Funcionalidades
 Após iniciar o frontend e backend, você pode testar as funcionalidades do sistema, como:
 
