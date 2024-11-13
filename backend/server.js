@@ -16,6 +16,7 @@ createDatabaseIfNotExists();
 // Rota POST para executar o script de pesquisa
 app.use('/pesquisar', pesquisaRoutes);
 app.use('/historico', historicoRoutes);
+app.use('/download', pesquisaRoutes);
 
 // Inicia o servidor
 app.listen(3000, () => {
