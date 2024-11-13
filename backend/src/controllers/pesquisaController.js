@@ -1,6 +1,5 @@
-// Correção no import necessário para exportarParaExcel
 const { execFile } = require("child_process");
-const { busca_inpi, sequelize } = require("../models"); // Adicione sequelize
+const { busca_inpi, sequelize } = require("../models"); 
 const { Op } = require("sequelize");
 const ExcelJS = require("exceljs");
 
