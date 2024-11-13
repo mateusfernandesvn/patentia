@@ -15,18 +15,19 @@ Este projeto tem como objetivo automatizar o processo de consulta de patentes no
 
 ## Tecnologias Utilizadas
 
-- **Backend (RPA)**: 
+- **Backend (RPA)**:
+
   - Python
   - Bibliotecas para raspagem de dados (BeautifulSoup, Requests)
   - Banco de dados (SQLite ou PostgreSQL)
-  
 - **Frontend**:
+
   - React.js
   - React Hook Form (para formulários)
   - Tailwind CSS (para estilos)
   - Zod (para validações)
-
 - **Validações**:
+
   - Express Validator (para o backend)
 
 ## Como Rodar o Projeto
@@ -44,3 +45,4 @@ Este projeto tem como objetivo automatizar o processo de consulta de patentes no
    ```bash
    git clone https://github.com/seu-usuario/rpa-inpi.git
    cd rpa-inpi
+   ```

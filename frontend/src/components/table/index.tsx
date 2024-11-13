@@ -23,7 +23,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
+  
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -59,7 +59,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
                 key={row.codigo}
                 className=" text-sm hover:bg-blue-300 transition-all duration-300"
               >
-                <td className="border px-4 py-2 ">
+                <td className="border px-4 p-2 max-w-sm overflow-hidden whitespace-nowrap text-ellipsis">
                   <a
                     href={row.link}
                     target="_blank"
@@ -68,8 +68,8 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
                     {row.pedido}
                   </a>
                 </td>
-                <td className="border px-4 py-2 ">{row.deposito}</td>
-                <td className="border px-4 py-2 ">{row.titulo}</td>
+                <td className="border px-4 py-2">{row.deposito}</td>
+                <td className="border px-4 py-2">{row.titulo}</td>
                 <td className="border px-4 py-2 ">{row.ipc}</td>
                 <td className="border px-4 py-2 ">{row.descricaoWipo}</td>
               </tr>

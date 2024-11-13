@@ -34,7 +34,7 @@ export function Home() {
           titulo: item.titulo,
           link: item.link,
           ipc: item.ipc,
-          pesquisa: item.pesquisa_realizada,  
+          pesquisa: item.pesquisa_realizada,
           descricaoWipo:
             item.descricaoWipo?.descricao || "Descrição não disponível",
         }));
@@ -54,15 +54,15 @@ export function Home() {
   async function handleExcel(pesquisaRealizada: string) {
     try {
       const response = await axios.get("http://localhost:3000/download", {
-        responseType: "blob", 
-        params: { pesquisa_realizada: pesquisaRealizada }, 
+        responseType: "blob",
+        params: { pesquisa_realizada: pesquisaRealizada },
       });
 
       // Criar um URL temporário para o arquivo
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", `${pesquisaRealizada}_dados_patentes.xlsx`); 
+      link.setAttribute("download", `${pesquisaRealizada}_dados_patentes.xlsx`);
       document.body.appendChild(link);
       link.click();
 
