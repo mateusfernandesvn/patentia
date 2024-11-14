@@ -1,9 +1,10 @@
-# SENAIBOT - Automação de Pesquisa de Patentes
+# PatentiA
 
 Este projeto tem como objetivo automatizar o processo de consulta de patentes no INPI (Instituto Nacional da Propriedade Industrial) e exibir os resultados por meio de uma interface web. O sistema utiliza Python para realizar a raspagem dos dados, armazenando-os em um banco de dados, e o frontend é desenvolvido em React para exibição dos dados. O projeto é composto por três partes principais:
 
 ## 📸 Imagem do projeto
-![screencapture-localhost-5173-2024-11-13-15_26_24](https://github.com/user-attachments/assets/c3456dce-651d-4405-bc9d-f6e8fc97e9d4)
+![patentia](https://github.com/user-attachments/assets/6498497e-db34-4a70-a4c5-9a7413e72c12)
+
 
 ## 💻	 Funcionalidades
 - **Raspagem de Dados de Patentes**: Realiza a raspagem de dados de patentes diretamente do site do **INPI** (Instituto Nacional de Propriedade Industrial).
@@ -41,7 +42,7 @@ Este projeto tem como objetivo automatizar o processo de consulta de patentes no
 Primeiro, clone o repositório do projeto para sua máquina local:
 
 ```bash
-git clone git@github.com:iJeferson/tcc-rpa-update.git
+git clone git@github.com:iJeferson/patentia.git
 ```
 
 ### 2. Instalar as Dependências
