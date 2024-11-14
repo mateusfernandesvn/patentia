@@ -58,7 +58,6 @@ export function Home() {
         params: { pesquisa_realizada: pesquisaRealizada },
       });
 
-      // Criar um URL temporário para o arquivo
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -112,14 +111,14 @@ export function Home() {
                 <div className="overflow-x-auto bg-slate-100 p-6 rounded-lg">
                   <div className="flex justify-around items-center my-4">
                     <h1 className="text-3xl font-semibold">Visualizar Dados</h1>
-                    <button
-                      className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+                  </div>
+                  <BasicTable rows={data} />
+                  <button
+                      className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4"
                       onClick={() => handleExcel(data[0].pesquisa)}
                     >
                       Gerar Excel
                     </button>
-                  </div>
-                  <BasicTable rows={data} />
                 </div>
               </>
             )}
