@@ -11,7 +11,7 @@ export function Header() {
             <span className="flex items-center justify-center">
               <FaDatabase size={30} color="yellow" className="mr-2" />
               <h1 className="uppercase text-3xl text-white hover:text-slate-300 transition-all duration-300">
-                Sen<span className="text-blue-400">ai</span>Bot
+              Patent<span className="text-blue-400">iA</span>
               </h1>
             </span>
           </Link>
