@@ -23,7 +23,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
-  
+
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -37,17 +37,23 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
   );
 
   return (
-    <>
-      <table  className="min-w-full table-auto border-collapse ">
+    <div className="overflow-x-auto">
+      <table className="min-w-full border border-black table-auto">
         <thead>
           <tr>
-            <th className="border px-4 py-2 bg-gray-800 text-white">Pedido</th>
-            <th className="border px-4 py-2 bg-gray-800 text-white">
+            <th className="border px-4 py-2 bg-yellow-400 text-black">
+              Pedido
+            </th>
+            <th className="border px-4 py-2 bg-yellow-400 text-black">
               Depósito
             </th>
-            <th className="border px-4 py-2 bg-gray-800 text-white">Título</th>
-            <th className="border px-4 py-2 bg-gray-800 text-white">Código</th>
-            <th className="border px-4 py-2 bg-gray-800 text-white">
+            <th className="border px-4 py-2 bg-yellow-400 text-black">
+              Título
+            </th>
+            <th className="border px-4 py-2 bg-yellow-400 text-black">
+              Código
+            </th>
+            <th className="border px-4 py-2 bg-yellow-400 text-black">
               Descrição
             </th>
           </tr>
@@ -57,26 +63,32 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
             paginatedRows.map((row) => (
               <tr
                 key={row.codigo}
-                className=" text-sm hover:bg-blue-300  transition-all duration-300"
+                className="text-sm text-white border hover:bg-neutral-800 transition duration-300"
               >
-                <td className="border px-4 p-2 max-w-sm overflow-hidden whitespace-nowrap text-ellipsis">
+                <td className="border px-4 py-2 max-w-sm overflow-hidden whitespace-nowrap text-ellipsis">
                   <a
                     href={row.link}
                     target="_blank"
-                    className="underline underline-offset-2 hover:text-gray-700 transition-all duration-300"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 "
                   >
                     {row.pedido}
                   </a>
                 </td>
                 <td className="border px-4 py-2">{row.deposito}</td>
-                <td className="border px-4 py-2  ">{row.titulo}</td>
-                <td className="border px-4 py-2 overflow-hidden whitespace-nowrap text-ellipsis">{row.ipc}</td>
-                <td className="border px-4 py-2 ">{row.descricaoWipo}</td>
+                <td className="border px-4 py-2">{row.titulo}</td>
+                <td className="border px-4 py-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                  {row.ipc}
+                </td>
+                <td className="border px-4 py-2">{row.descricaoWipo}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={7} className="border px-4 py-2 text-center">
+              <td
+                colSpan={5}
+                className="border px-4 py-2 text-center text-gray-700"
+              >
                 Nenhum dado encontrado
               </td>
             </tr>
@@ -92,12 +104,31 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
-        labelRowsPerPage="Linhas por página:"
+        labelRowsPerPage={
+          <span style={{ color: "white" }}>Linhas por página:</span>
+        }
         labelDisplayedRows={({ from, to, count }) =>
           `${from}-${to} de ${count}`
         }
+        sx={{
+          "& .MuiTablePagination-toolbar": {
+            color: "white",
+          },
+          "& .MuiSelect-root": {
+            color: "white",
+          },
+          "& .MuiSelect-icon": {
+            color: "white",
+          },
+          "& .MuiMenuItem-root": {
+            color: "white",
+          },
+          "& .MuiTablePagination-actions button": {
+            color: "white",
+          },
+        }}
       />
-    </>
+    </div>
   );
 };
 

@@ -4,26 +4,22 @@ import { Link } from "react-router-dom";
 export function Header() {
   return (
     <div>
-      <header className="  font-bold text-center bg-gray-800 text-white p-4 h-22 ">
-        <nav className="flex justify-around items-center">
+      <header className="  font-bold text-center bg-black text-white p-4 h-22 ">
+        <nav className="flex justify-between items-center mx-10">
           <Link to="/">
             {" "}
             <span className="flex items-center justify-center">
               <FaDatabase size={30} color="yellow" className="mr-2" />
-              <h1 className="uppercase text-3xl text-white hover:text-slate-300 transition-all duration-300">
-              Patent<span className="text-blue-400">iA</span>
-              </h1>
+              <h1 className="uppercase text-3xl text-yellow-3000">PatentiA</h1>
             </span>
           </Link>
-          <div className="flex items-center gap-4 text-2xl">
-            <a
-              href="https://github.com/iJeferson/tcc-rpa-update"
-              target="_blank"
-              className="text-lg text-white hover:text-slate-300 transition-all duration-300"
-            >
-              Documentação
-            </a>
-          </div>
+          <a
+            href="https://github.com/iJeferson/tcc-rpa-update"
+            target="_blank"
+            className="text-lg text-white hover:text-slate-300 transition-all duration-300"
+          >
+            Documentação
+          </a>
         </nav>
       </header>
     </div>

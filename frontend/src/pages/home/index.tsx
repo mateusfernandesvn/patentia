@@ -73,8 +73,8 @@ export function Home() {
 
   return (
     <Container>
-      <div className="my-8">
-        <h1 className="text-2xl font-bold text-center m-4 uppercase">
+      <div className=" p-10">
+        <h1 className="text-2xl font-bold text-center text-white  uppercase">
           Pesquise por uma patente
         </h1>
         <form onSubmit={handleSubmit}>
@@ -86,7 +86,7 @@ export function Home() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="bg-blue-600 border-none h-12 text-white rounded-lg p-3 hover:bg-blue-500 transition-all duration-300">
+            <button className="bg-yellow-400 text-black font-semibold border-none h-12  rounded-lg px-6 text-center hover:bg-yellow-500 transition-all duration-300">
               Buscar
             </button>
           </div>
@@ -108,17 +108,15 @@ export function Home() {
               </p>
             ) : (
               <>
-                <div className="overflow-x-auto bg-slate-100 p-6 rounded-lg">
-                  <div className="flex justify-around items-center my-4">
-                    <h1 className="text-3xl font-semibold">Visualizar Dados</h1>
-                  </div>
+                <div className="overflow-x-auto  p-4 ">
+                  <div className="flex justify-around items-center my-4"></div>
                   <BasicTable rows={data} />
                   <button
-                      className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4"
-                      onClick={() => handleExcel(data[0].pesquisa)}
-                    >
-                      Gerar Excel
-                    </button>
+                    className="bg-yellow-400 text-black font-semibold hover:bg-yellow-500  py-2 px-4 rounded mt-4"
+                    onClick={() => handleExcel(data[0].pesquisa)}
+                  >
+                    Gerar Excel
+                  </button>
                 </div>
               </>
             )}
