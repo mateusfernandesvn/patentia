@@ -3,7 +3,8 @@
 Este projeto tem como objetivo automatizar o processo de consulta de patentes no INPI (Instituto Nacional da Propriedade Industrial) e exibir os resultados por meio de uma interface web. O sistema utiliza Python para realizar a raspagem dos dados, armazenando-os em um banco de dados, e o frontend é desenvolvido em React para exibição dos dados. O projeto é composto por três partes principais:
 
 ## 📸 Imagem do projeto
-![patentia](https://github.com/user-attachments/assets/6498497e-db34-4a70-a4c5-9a7413e72c12)
+![screencapture-localhost-5174-2024-11-15-21_55_59](https://github.com/user-attachments/assets/a906147f-a978-4801-88ac-8d7c6dcbb3b1)
+
 
 
 ## 💻	 Funcionalidades
