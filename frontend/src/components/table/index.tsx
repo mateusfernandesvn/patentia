@@ -38,7 +38,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
 
   return (
     <>
-      <table  className="min-w-full table-auto border-collapse ">
+      <table  className="min-w-full bg-slate-50 table-auto border-collapse ">
         <thead>
           <tr>
             <th className="border px-4 py-2 bg-gray-800 text-white">Pedido</th>
@@ -57,7 +57,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ rows }) => {
             paginatedRows.map((row) => (
               <tr
                 key={row.codigo}
-                className=" text-sm hover:bg-blue-300  transition-all duration-300"
+                className=" text-sm hover:bg-blue-100  transition-all duration-300"
               >
                 <td className="border px-4 p-2 max-w-sm overflow-hidden whitespace-nowrap text-ellipsis">
                   <a
