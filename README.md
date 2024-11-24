@@ -109,7 +109,7 @@ Após iniciar o frontend e backend, você pode testar as funcionalidades do sist
 
 ## 📜 Histórico de Alterações
 
-### [1.0.0] - 2024-11-13
+### [1.0.0] - 13-11-2024
 - Implementação da raspagem de dados de patentes.
 - Conexão com banco de dados MySQL.
 - Exibição de patentes na interface web.
